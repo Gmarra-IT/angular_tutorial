@@ -9,6 +9,25 @@ import { MessageService } from '../message.service';
   styleUrls: ['./heroes.component.scss']
   
 })
+
+export class HeroesComponent implements OnInit {
+  heroes: Hero[];
+
+  constructor(private heroService: HeroService) { }
+
+  ngOnInit() {
+    this.getHeroes();
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes()
+    .subscribe(heroes => this.heroes = heroes);
+  }
+}
+
+// Sotto la prima impostazione, per gestire eventi legati al selected
+
+/*
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
@@ -31,7 +50,5 @@ export class HeroesComponent implements OnInit {
     this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
 
 }
-
-
-
 }
+*/
