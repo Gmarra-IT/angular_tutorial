@@ -28,12 +28,16 @@ export class HeroDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  
+
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id'); //il più converte la stringa (tutti i parametri in js) in numero
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
 
-  
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
+  }
+
 }
